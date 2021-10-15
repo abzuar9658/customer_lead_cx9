@@ -1,0 +1,8 @@
+.makeHover {
+  transition: all 0.5s ease-in-out;
+}
+
+.makeHover:hover {
+  cursor: pointer;
+  transform: scale(0.98);
+}
