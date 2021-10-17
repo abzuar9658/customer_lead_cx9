@@ -11,3 +11,4 @@ export const LEADS_LOAD_SUCCESS = "LEADS_LOAD_SUCCESS";
 export const LEADS_LOAD_FAIL = "LEADS_LOAD_FAIL";
 
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const LEADS_CLEAR = "LEADS_CLEAR";

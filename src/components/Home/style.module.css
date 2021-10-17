@@ -1,8 +1,10 @@
 .makeHover {
-  transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    width: 100%;
 }
 
 .makeHover:hover {
-  cursor: pointer;
-  transform: scale(0.98);
+    cursor: pointer;
+    transform: scale(0.99);
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
 }
