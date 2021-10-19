@@ -1,19 +1,46 @@
 .makeHover {
-  /* transition: all 0.5s ease-in-out; */
-  padding: 20px;
-  overflow: hidden;
-  transition: transform 0.5s ease;
-  width: 100%;
+    /* transition: all 0.5s ease-in-out; */
+    padding: 20px;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+
+.homeBody {
+    /* background-image: linear-gradient(250deg, #0e76bc 0%, #8dc63f 94%); */
+    /* background-image: url("https://images.unsplash.com/photo-1506765336936-bb05e7e06295?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bW91bnRhaW4lMjByb2NrfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"); */
+    opacity: 0.7;
 }
 
 .makeHover:hover {
-  cursor: pointer;
-  transform: scale(1.05);
-  box-shadow: 0 0 5px rgba(33, 33, 33, 0.2);
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgba(33, 33, 33, 0.2);
 }
 
-@media only screen and (max-width: 760px) {
-  .btSearch {
-    padding: 6%;
-  }
+.heart {
+    color: red;
+}
+
+.pakistan {
+    color: green;
+}
+
+.companyHeading {
+    margin-top: "20rem";
+}
+
+.formField {
+    padding: "10rem";
+}
+
+.formButton {
+    display: flex;
+    justify-content: end;
+}
+
+@media only screen and (min-width: 750px) {
+    .companyHeading {
+        margin-left: -10rem;
+    }
 }

@@ -6,7 +6,7 @@ import {
     Button,
     Header,
     Message,
-    Icon,
+    Image,
 } from "semantic-ui-react";
 import { useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -44,11 +44,11 @@ const Login = () => {
         }, [auth]);
         const displayErrors = (errors) =>
             errors.map((error, i) => ( <
-                p key = { i } > {
+                p key = { i } > { " " } {
                     error.message.includes("401") ?
-                    "Invalid username or password" :
+                        "Invalid username or password" :
                         error.message
-                } <
+                } { " " } <
                 /p>
             ));
 
@@ -79,23 +79,27 @@ const Login = () => {
             }
         };
         return ( <
+            div className = { classes.companiesGrid } >
+            <
             Grid textAlign = "center"
             style = {
-                { marginTop: "6%" } }
+                { marginTop: "-120px" } }
             stackable >
             <
             Grid.Column style = {
-                { maxWidth: 450 } } >
+                {
+                    maxWidth: 450,
+                    padding: "50px",
+                    backgroundColor: "cream",
+                }
+            } >
             <
-            Header as = "h1"
-            icon color = "blue"
-            textAlign = "center" >
-            Login to view Leads <
-            /Header> <
+            Image src = "/assets/logo-contegris-header.png"
+            centered fluid style = {
+                { marginLeft: "3.5px" } }
+            />{" "} <
             Form onSubmit = { handleSubmit }
             size = "large" >
-            <
-            Segment >
             <
             Form.Input fluid name = "username"
             icon = "mail"
@@ -110,7 +114,6 @@ const Login = () => {
             className = { handleInputError(errors, "username") }
             type = "text" /
             >
-
             <
             Form.Input fluid name = "password"
             icon = "lock"
@@ -125,29 +128,25 @@ const Login = () => {
             className = { handleInputError(errors, "password") }
             type = "password" /
             >
-
             <
             Button disabled = { loading }
             className = { loading ? "loading" : "" }
             color = "blue"
             fluid size = "large" >
-            Submit <
-            /Button> <
-            /Segment> <
-            /Form> {
+            Submit { " " } <
+            /Button>{" "} <
+            /Form>{" "} {
                 errors.length > 0 && ( <
                     Message error >
                     <
-                    h3 > Error < /h3> { displayErrors(errors) } <
+                    h3 > Error < /h3> {displayErrors(errors)}{" "} <
                     /Message>
                 )
-            } {
-                success ? < Message success > Login Success < /Message> : null} <
-                    Message >
-                    Dont 't have an account? <Link to="/register">Register</Link> <
-                    /Message> <
-                    /Grid.Column> <
-                    /Grid>
+            } { " " } {
+                success ? < Message success > Login Success < /Message> : null}{" "} <
+                    /Grid.Column>{" "} <
+                    /Grid>{" "} <
+                    /div>
             );
         };
 

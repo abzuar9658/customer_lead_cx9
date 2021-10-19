@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Home from "./Home";
+import Home from "./Home/Home";
 import LeadDetail from "./Leads/LeadDetail";
 import Login from "./Auth/Login";
 import "./App.css";
@@ -23,7 +23,7 @@ function App() {
         component = { LeadDetail }
         />{" "} <
         /Switch>{" "} <
-        /Router> <
+        /Router>{" "} <
         /Error>
     );
 }

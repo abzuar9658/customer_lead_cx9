@@ -1,11 +1,20 @@
 .center {
-  display: flex;
-  justify-content: center;
-  text-align: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
+
 .linkTag {
-  text-decoration: underline;
+    text-decoration: underline;
 }
+
 .linkTag:hover {
-  cursor: pointer;
+    cursor: pointer;
+}
+
+.companiesGrid {
+    padding-top: 18rem;
+    margin-left: -20rem;
+    min-height: 100vh;
+    width: 130%;
 }
