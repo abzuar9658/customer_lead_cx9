@@ -4,28 +4,23 @@ import LeadDetail from "./Leads/LeadDetail";
 import Login from "./Auth/Login";
 import "./App.css";
 import Error from "./Error/Error";
-
+import HeaderSection from "./Home/HeaderSection";
+import FooterSection from "./Home/FooterSection";
 function App() {
-    return ( <
-        Error >
-        <
-        Router >
-        <
-        Switch >
-        <
-        Route path = "/"
-        exact component = { Home }
-        />{" "} <
-        Route path = "/login"
-        component = { Login }
-        />{" "} <
-        Route path = "/leads/:id"
-        component = { LeadDetail }
-        />{" "} <
-        /Switch>{" "} <
-        /Router>{" "} <
-        /Error>
-    );
+  return (
+  
+    <Error>
+        <HeaderSection/>
+      <Router>
+        <Switch>
+          <Route path="/" exact component={Home} />{" "}
+          <Route path="/login" component={Login} />{" "}
+          <Route path="/leads/:id" component={LeadDetail} />{" "}
+        </Switch>{" "}
+      </Router>{" "}
+      <FooterSection />
+    </Error>
+  );
 }
 
 export default App;
