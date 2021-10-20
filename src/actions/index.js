@@ -1,7 +1,8 @@
 import * as actionTypes from "./types";
 import axios from "axios";
 //const url = "http://192.168.50.102:5000/api";
-const url = "http://192.168.50.140:5000/api";
+// const url = "http://192.168.50.140:5000/api";
+const url = "http://localhost:5000/api";
 
 const loginLoading = () => {
     return {
