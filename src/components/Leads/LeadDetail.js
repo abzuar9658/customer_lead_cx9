@@ -4,8 +4,6 @@ import {
     Message,
     Item,
     Icon,
-    ButtonGroup,
-    Button,
     Table,
     Popup,
     Pagination,
@@ -17,35 +15,6 @@ import { useHistory } from "react-router";
 import { Loader, Dimmer } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 
-const ListView = ({ leads }) => ( <
-    div style = {
-        {
-            marginTop: "3%",
-            height: "60vh",
-            overflow: "scroll",
-            padding: "2%",
-        }
-    } >
-    <
-    Item.Group divided > {
-        leads.data.data &&
-        leads.data.data.leads &&
-        leads.data.data.leads.map((lead, idx) => ( <
-            Item key = { idx } >
-            <
-            Item.Content >
-            <
-            Item.Header > { lead.subject } < /Item.Header> <
-            Item.Meta > { " " } { new Date(lead.createdAt).toLocaleDateString("en-US") } { " " } <
-            /Item.Meta> <
-            Item.Extra > Lead ID: { lead.id } < /Item.Extra> <
-            /Item.Content> <
-            /Item>
-        ))
-    } <
-    /Item.Group> <
-    /div>
-);
 const TableView = ({ leads }) => ( <
     Table celled striped >
     <
@@ -86,6 +55,7 @@ const LeadDetail = (props) => {
     const leads = useSelector((state) => state.leads);
     const auth = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    const [activePage, setactivePage] = useState(1);
     useEffect(() => {
         try {
             if (!auth.isSuccess) {
@@ -93,7 +63,9 @@ const LeadDetail = (props) => {
                 return null;
             }
             if (!leads.isSuccess && props.match)
-                dispatch(getLeads({ companyId: props.match.params.id }));
+                dispatch(
+                    getLeads({ companyId: props.match.params.id, page: activePage })
+                );
             return () => {
                 console.log("COMPONENT DID MOUNT RAN");
                 dispatch(clearLeads());
@@ -102,6 +74,20 @@ const LeadDetail = (props) => {
             console.log(error);
         }
     }, []);
+
+    useEffect(() => {
+        try {
+            if (!auth.isSuccess) {
+                history.push("/login");
+                return null;
+            }
+            dispatch(
+                getLeads({ companyId: props.match.params.id, page: activePage })
+            );
+        } catch (error) {
+            console.log(error);
+        }
+    }, [activePage]);
     if (leads.isLoading) {
         return ( <
             >
@@ -149,13 +135,15 @@ const LeadDetail = (props) => {
             /div> <
             TableView leads = { leads }
             /> <
-            Pagination boundaryRange = { 0 }
-            defaultActivePage = { 1 }
-            ellipsisItem = { null }
-            firstItem = { null }
-            lastItem = { null }
-            siblingRange = { 1 }
-            totalPages = { 10 }
+            Pagination style = {
+                { display: "flex", justifyContent: "center" } }
+            onPageChange = {
+                (e, data) => {
+                    setactivePage(data.activePage);
+                }
+            }
+            defaultActivePage = { activePage }
+            totalPages = { Math.floor(leads.data.data.total / 10) }
             /> <
             /Container>
         );

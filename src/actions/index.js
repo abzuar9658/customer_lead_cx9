@@ -3,7 +3,6 @@ import axios from "axios";
 //const url = "http://192.168.50.102:5000/api";
 // const url = "http://192.168.50.140:5000/api";
 const url = "http://localhost:5000/api";
-
 const loginLoading = () => {
     return {
         type: actionTypes.LOGIN_LOADING,
@@ -81,7 +80,8 @@ const leadsLoading = () => {
 };
 
 export const getLeads = (body) => async(dispatch) => {
-    const { companyId } = body;
+    const { companyId, page } = body;
+    console.log("GET LEADS ACTION CALL: ", page);
     try {
         dispatch(leadsLoading());
         const config = {
@@ -92,6 +92,7 @@ export const getLeads = (body) => async(dispatch) => {
         const res = await axios.post(
             `${url}/leads`, {
                 companyId,
+                page,
             },
             config
         );
