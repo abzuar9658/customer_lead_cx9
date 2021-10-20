@@ -9,6 +9,7 @@ import {
   Table,
   Popup,
   Pagination,
+  Header,
 } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
 import { getLeads, clearLeads } from "../../actions";
@@ -26,48 +27,55 @@ const ListView = ({ leads }) => (
     }}
   >
     <Item.Group divided>
+      {" "}
       {leads.data.data &&
-        leads.data.data.map((lead, idx) => (
+        leads.data.data.leads &&
+        leads.data.data.leads.map((lead, idx) => (
           <Item key={idx}>
             <Item.Content>
-              <Item.Header> {lead.title} </Item.Header>
-              <Item.Meta> {lead.description} </Item.Meta>
-              <Item.Extra> Lead ID: {lead.lead_id} </Item.Extra>
-            </Item.Content>
+              <Item.Header> {lead.subject} </Item.Header>{" "}
+              <Item.Meta>
+                {" "}
+                {new Date(lead.createdAt).toLocaleDateString("en-US")}{" "}
+              </Item.Meta>{" "}
+              <Item.Extra> Lead ID: {lead.id} </Item.Extra>{" "}
+            </Item.Content>{" "}
           </Item>
-        ))}
-    </Item.Group>
+        ))}{" "}
+    </Item.Group>{" "}
   </div>
 );
 const TableView = ({ leads }) => (
-  <div style={{ height: "60vh", overflow: "scroll" }}>
-    <Table striped>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell> Sr. </Table.HeaderCell>
-          <Table.HeaderCell> Lead ID </Table.HeaderCell>
-          <Table.HeaderCell> Title </Table.HeaderCell>
-          <Table.HeaderCell> Description </Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {leads.data.data &&
-          [
-            ...leads.data.data,
-            ...leads.data.data,
-            ...leads.data.data,
-            ...leads.data.data,
-          ].map((lead, sr) => (
-            <Table.Row>
-              <Table.Cell> {sr + 1} </Table.Cell>
-              <Table.Cell> {lead.lead_id} </Table.Cell>
-              <Table.Cell> {lead.title} </Table.Cell>
-              <Table.Cell> {lead.description} </Table.Cell>
-            </Table.Row>
-          ))}
-      </Table.Body>
-    </Table>
-  </div>
+  <Table celled striped>
+    <Table.Header>
+      <Table.Row>
+        <Table.HeaderCell> Sr. </Table.HeaderCell>{" "}
+        <Table.HeaderCell> Subject </Table.HeaderCell>{" "}
+        <Table.HeaderCell> Lead Number </Table.HeaderCell>{" "}
+        <Table.HeaderCell> Creation Date </Table.HeaderCell>{" "}
+        <Table.HeaderCell> Status </Table.HeaderCell>{" "}
+        <Table.HeaderCell> Pipeline Stage </Table.HeaderCell>{" "}
+      </Table.Row>{" "}
+    </Table.Header>{" "}
+    <Table.Body>
+      {" "}
+      {leads.data.data &&
+        leads.data.data.leads &&
+        leads.data.data.leads.map((lead, sr) => (
+          <Table.Row>
+            <Table.Cell> {sr + 1} </Table.Cell>{" "}
+            <Table.Cell> {lead.subject} </Table.Cell>{" "}
+            <Table.Cell> {lead.leadNumber} </Table.Cell>{" "}
+            <Table.Cell>
+              {" "}
+              {new Date(lead.createdAt).toLocaleDateString("en-US")}{" "}
+            </Table.Cell>{" "}
+            <Table.Cell> {lead.status ? "Open" : "Closed"} </Table.Cell>{" "}
+            <Table.Cell> {lead.pipelineStage} </Table.Cell>{" "}
+          </Table.Row>
+        ))}{" "}
+    </Table.Body>{" "}
+  </Table>
 );
 
 const LeadDetail = (props) => {
@@ -75,7 +83,6 @@ const LeadDetail = (props) => {
   const leads = useSelector((state) => state.leads);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const [activeView, setactiveView] = useState("tabularview");
   useEffect(() => {
     try {
       if (!auth.isSuccess) {
@@ -95,10 +102,10 @@ const LeadDetail = (props) => {
   if (leads.isLoading) {
     return (
       <>
-        <h1> LOADING LEADS </h1>
+        <h1> LOADING LEADS </h1>{" "}
         <Dimmer active>
-          <Loader size="massive"> Loading </Loader>
-        </Dimmer>
+          <Loader size="massive"> Loading </Loader>{" "}
+        </Dimmer>{" "}
       </>
     );
   }
@@ -108,48 +115,25 @@ const LeadDetail = (props) => {
         <div
           style={{
             display: "flex",
-            alignContent: "center",
-            justifyContent: "center",
           }}
         >
           <Popup
             content="previous page"
             trigger={
               <NavLink to="/">
-                <Icon name="arrow alternate circle left" size="large" /> Back
+                <Icon name="arrow alternate circle left" size="large" /> Back{" "}
               </NavLink>
             }
-          />
-
-          <h2 style={{ flexGrow: "4", textAlign: "center" }}>
-            Created Leads for
+          />{" "}
+          <Header as="h2" textAlign="center" style={{ flex: "1" }}>
+            Created Leads for{" "}
             {props.location && props.location.params
               ? props.location.params.companyName[0].toUpperCase() +
                 props.location.params.companyName.slice(1)
-              : null}
-          </h2>
-        </div>
-        <ButtonGroup>
-          <Button
-            disabled={activeView === "tabularview"}
-            onClick={() => setactiveView("tabularview")}
-          >
-            Tabular View
-          </Button>
-          <Button
-            disabled={activeView === "listview"}
-            onClick={() => {
-              setactiveView("listview");
-            }}
-          >
-            List View
-          </Button>
-        </ButtonGroup>
-        {activeView === "listview" ? (
-          <ListView leads={leads} />
-        ) : (
-          <TableView leads={leads} />
-        )}
+              : null}{" "}
+          </Header>{" "}
+        </div>{" "}
+        <TableView leads={leads} />{" "}
         <Pagination
           boundaryRange={0}
           defaultActivePage={1}
@@ -158,7 +142,7 @@ const LeadDetail = (props) => {
           lastItem={null}
           siblingRange={1}
           totalPages={10}
-        />
+        />{" "}
       </Container>
     );
   }
