@@ -4,12 +4,16 @@ import LeadDetail from "./Leads/LeadDetail";
 import Login from "./Auth/Login";
 import "./App.css";
 import Error from "./Error/Error";
+import HeaderSection from "./Home/HeaderSection";
+import FooterSection from "./Home/FooterSection";
 
 function App() {
     return ( <
         Error >
         <
         Router >
+        <
+        HeaderSection / >
         <
         Switch >
         <
@@ -24,6 +28,8 @@ function App() {
         />{" "} <
         /Switch>{" "} <
         /Router>{" "} <
+        FooterSection / >
+        <
         /Error>
     );
 }

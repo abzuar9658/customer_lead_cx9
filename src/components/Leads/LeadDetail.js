@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
     Container,
     Message,
-    Item,
     Icon,
     Table,
     Popup,
@@ -14,40 +13,51 @@ import { getLeads, clearLeads } from "../../actions";
 import { useHistory } from "react-router";
 import { Loader, Dimmer } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
-
+console.log("Hello");
 const TableView = ({ leads }) => ( <
+    div style = {
+        { height: "55vh", overflow: "scroll" } } >
+    <
     Table celled striped >
     <
     Table.Header >
     <
     Table.Row >
     <
-    Table.HeaderCell > Sr. < /Table.HeaderCell> <
-    Table.HeaderCell > Subject < /Table.HeaderCell> <
-    Table.HeaderCell > Lead Number < /Table.HeaderCell> <
-    Table.HeaderCell > Creation Date < /Table.HeaderCell> <
-    Table.HeaderCell > Status < /Table.HeaderCell> <
-    Table.HeaderCell > Pipeline Stage < /Table.HeaderCell> <
-    /Table.Row> <
-    /Table.Header> <
-    Table.Body > {
-        leads.data.data &&
-        leads.data.data.leads &&
-        leads.data.data.leads.map((lead, sr) => ( <
-            Table.Row >
-            <
-            Table.Cell > { sr + 1 } < /Table.Cell> <
-            Table.Cell > { lead.subject } < /Table.Cell> <
-            Table.Cell > { lead.leadNumber } < /Table.Cell> <
-            Table.Cell > { new Date(lead.createdAt).toLocaleDateString("en-US") } <
-            /Table.Cell> <
-            Table.Cell > { lead.status ? "Open" : "Closed" } < /Table.Cell> <
-            Table.Cell > { lead.pipelineStage } < /Table.Cell> <
-            /Table.Row>
-        ))
-    } <
-    /Table.Body> <
-    /Table>
+    Table.HeaderCell > Lead Id < /Table.HeaderCell>{" "} <
+    Table.HeaderCell > Subject < /Table.HeaderCell>{" "} <
+    Table.HeaderCell > Lead Number < /Table.HeaderCell>{" "} <
+    Table.HeaderCell > Creation Date < /Table.HeaderCell>{" "} <
+    Table.HeaderCell > Status < /Table.HeaderCell>{" "} <
+    Table.HeaderCell > Lead Owner < /Table.HeaderCell>{" "} <
+    /Table.Row>{" "} <
+    /Table.Header>{" "} <
+    Table.Body > { " " } {
+        leads.data &&
+            leads.data.leads &&
+            leads.data.leads.map((lead, sr) => ( <
+                Table.Row >
+                <
+                Table.Cell > { lead.id } < /Table.Cell>{" "} <
+                Table.Cell > { lead.subject } < /Table.Cell>{" "} <
+                Table.Cell > { lead.leadNumber } < /Table.Cell>{" "} <
+                Table.Cell > { " " } { new Date(lead.createdAt).toLocaleDateString("en-US") } { " " } <
+                /Table.Cell>{" "} <
+                Table.Cell error = {!lead.status }
+                positive = { lead.status } > { " " } { lead.status ? < span > Open < /span> : <span>Closed</span > } { " " } <
+                /Table.Cell>{" "} <
+                Table.Cell > { " " } {
+                    lead.teamMember.label ?
+                        lead.teamMember.label :
+                        "restricted"
+                } { " " } <
+                /Table.Cell>{" "} <
+                /Table.Row>
+            ))
+    } { " " } <
+    /Table.Body>{" "} <
+    /Table>{" "} <
+    /div>
 );
 
 const LeadDetail = (props) => {
@@ -87,27 +97,32 @@ const LeadDetail = (props) => {
         } catch (error) {
             console.log(error);
         }
-    }, [activePage]);
+    }, [activePage, auth.isSuccess]);
     if (leads.isLoading) {
+        return ( <
+            div style = {
+                { height: "83.6vh", position: "relative", margin: "1rem auto" } } >
+            <
+            Dimmer inverted active >
+            <
+            Loader size = "small"
+            inverted > { " " }
+            Loading { " " } <
+            /Loader>{" "} <
+            /Dimmer>{" "} <
+            /div>
+        );
+    }
+    if (leads.isSuccess && !leads.isLoading) {
         return ( <
             >
             <
-            h1 > LOADING LEADS < /h1> <
-            Dimmer active >
-            <
-            Loader size = "massive" > Loading < /Loader> <
-            /Dimmer> <
-            />
-        );
-    }
-    if (leads.isSuccess) {
-        return ( <
             Container style = {
-                { marginTop: "4%" } } >
+                { margin: "5.8em", height: "65.8vh", paddingBottom: "10rem" } } >
             <
             div style = {
                 {
-                    display: "flex",
+                    margin: "2em 0",
                 }
             } >
             <
@@ -115,37 +130,48 @@ const LeadDetail = (props) => {
             trigger = { <
                 NavLink to = "/" >
                 <
-                Icon name = "arrow alternate circle left"
-                size = "large" / > Back <
+                h3 >
+                <
+                Icon
+                name = "arrow alternate circle left"
+                size = "large"
+                color = "blue" /
+                >
+                Back { " " } <
+                /h3>{" "} <
                 /NavLink>
             }
-            /> <
-            Header as = "h2"
-            textAlign = "center"
+            />{" "} <
+            /div>{" "} <
+            Header as = "h4"
+            textAlign = "left"
             style = {
-                { flex: "1" } } >
-            Created Leads
-            for {
-                props.location && props.location.params ?
-                    props.location.params.companyName[0].toUpperCase() +
-                    props.location.params.companyName.slice(1) :
-                    null
-            } <
-            /Header> <
-            /div> <
+                {
+                    flex: "1",
+                    marginBottom: "2rem",
+                    textDecoration: "underline",
+                }
+            } >
+            Total Leads: { leads.data.total } { " " } <
+            /Header>{" "} <
             TableView leads = { leads }
-            /> <
+            />{" "} <
             Pagination style = {
-                { display: "flex", justifyContent: "center" } }
+                {
+                    display: "flex",
+                    justifyContent: "center",
+                }
+            }
             onPageChange = {
                 (e, data) => {
                     setactivePage(data.activePage);
                 }
             }
             defaultActivePage = { activePage }
-            totalPages = { Math.floor(leads.data.data.total / 10) }
-            /> <
-            /Container>
+            totalPages = { Math.floor(leads.data.total / 10) }
+            />{" "} <
+            /Container>{" "} <
+            />
         );
     }
     if (leads.isSuccess === null) {

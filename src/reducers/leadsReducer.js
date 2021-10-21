@@ -18,7 +18,7 @@ export const leadsReducer = (state = initial_state, action) => {
         case actionTypes.LEADS_LOAD_SUCCESS:
             return {
                 ...state,
-                data: payload.data,
+                data: payload.data.data,
                 isSuccess: true,
                 isLoading: false,
                 isError: false,
@@ -46,6 +46,31 @@ export const leadsReducer = (state = initial_state, action) => {
                 isSuccess: null,
                 isError: null,
                 errorMessage: null,
+            };
+        default:
+            return state;
+    }
+};
+
+const initial_state_company = {
+    data: [],
+};
+export const leadsReducerCompany = (state = initial_state_company, action) => {
+    const { type, payload } = action;
+    switch (type) {
+        case actionTypes.LEADS_LOADING_COMPANY:
+            return {
+                ...state,
+            };
+        case actionTypes.LEADS_LOAD_COMPANY_SUCCESS:
+            return {
+                ...state,
+                data: payload.data.data,
+            };
+        case actionTypes.LEADS_LOAD_COMPANY_FAIL:
+            return {
+                ...state,
+                data: null,
             };
         default:
             return state;

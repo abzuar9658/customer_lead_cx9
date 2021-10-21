@@ -19,9 +19,6 @@ export const login = (body) => async(dispatch) => {
     const { username, password } = body;
     dispatch(loginLoading());
     try {
-        const config = {
-            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        };
         const res = await axios.post(`${url}/login`, { username, password });
         dispatch({
             type: actionTypes.LOGIN_LOAD_SUCCESS,
@@ -91,8 +88,8 @@ export const getLeads = (body) => async(dispatch) => {
         };
         const res = await axios.post(
             `${url}/leads`, {
-                companyId,
-                page,
+                companyId: companyId ? companyId : "",
+                page: page ? page : 1,
             },
             config
         );
@@ -107,7 +104,39 @@ export const getLeads = (body) => async(dispatch) => {
         });
     }
 };
+const leadsLoadingCompany = () => {
+    return {
+        type: actionTypes.LEADS_LOADING_COMPANY,
+    };
+};
 
+export const getLeadsCompany = (body) => async(dispatch) => {
+    const { companyId, page } = body;
+    try {
+        dispatch(leadsLoadingCompany());
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        };
+        const res = await axios.post(
+            `${url}/leads`, {
+                companyId: companyId ? companyId : "",
+                page: page ? page : 1,
+            },
+            config
+        );
+        dispatch({
+            type: actionTypes.LEADS_LOAD_COMPANY_SUCCESS,
+            payload: res,
+        });
+    } catch (error) {
+        dispatch({
+            type: actionTypes.LEADS_LOAD_COMPANY_FAIL,
+            payload: error.message,
+        });
+    }
+};
 export const clearLeads = () => {
     return {
         type: actionTypes.LEADS_CLEAR,

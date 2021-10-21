@@ -18,7 +18,7 @@ export const companiesReducer = (state = initial_state, action) => {
         case actionTypes.COMPANIES_LOAD_SUCCESS:
             return {
                 ...state,
-                data: payload.data,
+                data: payload.data.data.data,
                 isSuccess: true,
                 isLoading: false,
                 isError: false,

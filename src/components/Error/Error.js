@@ -7,15 +7,15 @@ class Error extends React.Component {
         return ( <
             div className = "error-container" >
             <
-            div className = "error-holder-container" > {
+            div className = "error-holder-container" > { " " } {
                 /* <div className="error-logo-holder">
-                            <img src={logo} alt="Logo" className="error-logo" />
-                          </div> */
-            } <
-            h4 className = "error-caption" > Sorry, something went wrong. < /h4> <
+                                            <img src={logo} alt="Logo" className="error-logo" />
+                                          </div> */
+            } { " " } <
+            h4 className = "error-caption" > Sorry, something went wrong. < /h4>{" "} <
             p className = "error-description" >
-            We are working on it and we will get it fixed as soon as we can <
-            /p> <
+            We are working on it and we will get it fixed as soon as we can { " " } <
+            /p>{" "} <
             span href = "#"
             className = "error-go-back-btn"
             onClick = {
@@ -24,9 +24,9 @@ class Error extends React.Component {
                     window.location.reload();
                 }
             } >
-            Go Back <
-            /span> <
-            /div> <
+            Go Back { " " } <
+            /span>{" "} <
+            /div>{" "} <
             /div>
         );
     };
@@ -39,7 +39,7 @@ class Error extends React.Component {
         const { children } = this.props;
         return ( <
             ErrorBoundary FallbackComponent = { this.ErrorFallback }
-            onError = { this.myErrorHandler } > { children } <
+            onError = { this.myErrorHandler } > { " " } { children } { " " } <
             /ErrorBoundary>
         );
     }

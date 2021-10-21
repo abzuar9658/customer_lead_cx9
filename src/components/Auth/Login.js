@@ -82,14 +82,13 @@ const Login = () => {
             div className = { classes.companiesGrid } >
             <
             Grid textAlign = "center"
-            style = {
-                { marginTop: "-120px" } }
             stackable >
             <
             Grid.Column style = {
                 {
                     maxWidth: 450,
                     padding: "50px",
+                    marginTop: "-10px",
                     backgroundColor: "cream",
                 }
             } >

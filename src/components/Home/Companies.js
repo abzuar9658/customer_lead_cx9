@@ -1,37 +1,34 @@
 import React from "react";
-import { Item } from "semantic-ui-react";
-import LeadDetail from "../Leads/LeadDetail";
+import { Item, Grid, Card, Image, Icon } from "semantic-ui-react";
 import styles from "./style.module.css";
-import { Link } from "react-router-dom";
-const Companies = ({ companies }) => {
+import classes from "./style.module.css";
+import { useHistory } from "react-router";
+const Companies = ({ companies, leads }) => {
+    const history = useHistory();
     if (companies) {
         return ( <
             div style = {
-                { width: "100%", margin: "50px" } } > {
-                companies.data.data && ( <
-                    h3 > Companies Found: { companies.data.data.length } < /h3>
+                { width: "100%", marginTop: "5em" } }
+            className = { classes.companiesContainer } > {
+                companies.data && companies.data.total && ( <
+                    h3 style = {
+                        { fontWeight: "600", textDecoration: "underline" } } >
+                    <
+                    i > Companies found: { companies.data.total } < /i> <
+                    /h3>
                 )
-            }
-
-            <
-            br / >
-            <
-            Item.Group divided > {
+            } <
+            Grid columns = { 3 }
+            stackable > {
                 companies.data &&
-                companies.data.data &&
-                companies.data.data.data &&
-                companies.data.data.data.companies &&
-                companies.data.data.data.companies.map((company, idx) => ( <
-                    Item key = { idx } >
+                companies.data.companies &&
+                companies.data.companies.map((company, idx) => ( <
+                    Grid.Column key = { idx }
+                    width = { 5 } >
+                    <
+                    Item >
                     <
                     div className = { styles.makeHover } >
-                    <
-                    Link to = {
-                        {
-                            pathname: `/leads/${company.id}`,
-                            params: { companyName: company.name },
-                        }
-                    } >
                     <
                     div style = {
                         {
@@ -39,7 +36,9 @@ const Companies = ({ companies }) => {
                             alignItems: "center",
                             paddingLeft: "15px",
                         }
-                    } >
+                    }
+                    onClick = {
+                        () => history.push(`/leads/${company.id}`) } >
                     <
                     Item.Image size = "tiny"
                     src = {
@@ -51,30 +50,45 @@ const Companies = ({ companies }) => {
                     Item.Content style = {
                         { marginLeft: "20px" } } >
                     <
-                    Item.Header as = "a" >
+                    Item.Header >
                     <
                     strong > { company.name.toUpperCase() } < /strong> <
-                    /Item.Header>
-
-                    <
+                    /Item.Header> <
                     Item.Description content = { company.email }
-                    /> <
-                    Item.Meta >
-                    Phone: { "  " } { company.phone } <
-                    /Item.Meta> <
-                    Item.Meta >
-                    Weblink: { "  " } <
-                    a href = { company.weblink ? company.weblink : "" } > { company.weblink } <
-                    /a> <
-                    /Item.Meta> <
+                    /> {
+                        company.number && ( <
+                            Item.Meta >
+                            Phone: { "  " } { company.number } <
+                            /Item.Meta>
+                        )
+                    } {
+                        company.weblink && ( <
+                            Item.Meta >
+                            Weblink: { "  " } <
+                            a href = { company.website ? company.website : "" } > { company.website } <
+                            /a> <
+                            /Item.Meta>
+                        )
+                    } {
+                        leads.data && leads.data.total && ( <
+                            Item.Extra style = {
+                                {
+                                    marginTop: "2rem",
+                                    marginLeft: "4rem",
+                                }
+                            } >
+                            Total leads: { leads.data.total } <
+                            /Item.Extra>
+                        )
+                    } <
                     /Item.Content> <
                     /div> <
-                    /Link> <
                     /div> <
-                    /Item>
+                    /Item> <
+                    /Grid.Column>
                 ))
             } <
-            /Item.Group> <
+            /Grid> <
             /div>
         );
     } else {
