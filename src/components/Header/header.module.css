@@ -1,0 +1,238 @@
+.headerContainer {
+  background-image: linear-gradient(37deg, #8dc63f 0%, #0e76bc 100%);
+  min-width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.headerJazzLogo {
+  margin: 10px 0;
+}
+.logoutButton {
+  background-color: red;
+  border-radius: 7px; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.field {
+  background-color: red;
+  display: none;
+}
+@media only screen and (max-width: 374px) {
+  .headerImage {
+    width: 100px;
+    margin-top: 5px;
+    margin-left: 10px;
+  }
+  .companyHeading {
+    font-size: 100%;
+    flex: 5 2 auto;
+    z-index: 99 !important;
+  }
+  .headerJazz {
+    width: 30px;
+  }
+  .logoutButton {
+    font-size: 8px;
+    padding: 7px 15px;
+  }
+}
+@media only screen and (max-width: 374px) {
+  .companyHeading {
+    display: none;
+    font-size: 90%;
+  }
+  .headerJazz {
+    margin-right: 1.5em;
+  }
+}
+@media only screen and (min-width: 375px) {
+  .headerImage {
+    width: 70px;
+  }
+  .companyHeading {
+    font-size: 90%;
+  }
+  .headerJazz {
+    width: 25px;
+  }
+  .logoutButton {
+    font-size: 5px;
+    padding: 7px 15px;
+  }
+}
+@media only screen and (min-width: 460px) {
+  .headerImage {
+    width: 90px;
+  }
+  .companyHeading {
+    font-size: 110%;
+  }
+  .headerJazz {
+    width: 35px;
+  }
+  .logoutButton {
+    font-size: 8.5px;
+    padding: 7px 15px;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .headerImage {
+    width: 120px;
+  }
+  .companyHeading {
+    font-size: 140%;
+  }
+  .headerJazz {
+    width: 50px;
+  }
+  .logoutButton {
+    font-size: 7.5px;
+    padding: 10px 20px;
+  }
+}
+@media only screen and (min-width: 770px) {
+  .headerImage {
+    width: 150px;
+  }
+  .companyHeading {
+    font-size: 170%;
+  }
+  .headerJazz {
+    width: 60px;
+  }
+  .logoutButton {
+    font-size: 14px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .headerImage {
+    width: 220px;
+  }
+  .companyHeading {
+    font-size: 200%;
+  }
+  .headerJazz {
+    width: 90px;
+  }
+  .logoutButton {
+    font-size: 20px;
+  }
+}
+@media only screen and (min-width: 2375px) {
+  .headerImage {
+    width: 350px;
+  }
+  .companyHeading {
+    font-size: 320%;
+  }
+  .headerJazz {
+    width: 140px;
+  }
+  .logoutButton {
+    font-size: 35px;
+  }
+}
+.companies_form__1QQBT {
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+  margin: 0 -0.5em 1em;
+  width: 0px;
+}
+/* .headerContainer {
+  background-image: linear-gradient(37deg, #8dc63f 0%, #0e76bc 100%);
+  min-width: 100%;
+  display: inline-block;
+  overflow-y: hidden;
+}
+@media only screen and (min-width: 2560px) and (max-width: 769px) {
+  .companyHeading {
+    size: 200em;
+    background-color: red;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .headerContainer {
+    padding: 0 5em;
+  }
+  .logo {
+    margin-left: 2em;
+  }
+}
+@media only screen and (max-width: 840px) {
+  .companyHeading {
+    font-size: large;
+  }
+}
+.logo {
+  display: block;
+  padding: 10%;
+}
+@media only screen and (min-width: 1440px) {
+  .companyHeading {
+    margin-left: 5em;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .companyHeading {
+    display: none;
+  }
+  .headerContainer {
+    height: 50px;
+  }
+  .logo {
+    display: none;
+    padding: 0px;
+  }
+}
+@media only screen and (max-width: 767px) and (min-width: 426px) {
+  .logout {
+    background-color: red;
+    width: 10%;
+    position: absolute;
+    top: 0;
+  }
+  .logoutButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px;
+    position: fixed;
+  }
+  .contegrisLogo {
+    position: absolute;
+    top: 15px;
+    left: 30px;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .logout {
+    background-color: red;
+    width: 10%;
+    position: absolute;
+    top: 0;
+  }
+  .logoutButton {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    padding: 4px;
+    position: fixed;
+  }
+  .contegrisLogo {
+    position: absolute;
+    top: 15px;
+  }
+}
+.companyHeading {
+  color: white;
+  text-align: center;
+} */

@@ -1,0 +1,47 @@
+.footerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-image: linear-gradient(37deg, #8dc63f 0%, #0e76bc 100%);
+  min-width: 100%;
+  padding: 1em;
+  overflow-y: hidden;
+}
+.footer {
+  margin: 0 auto;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 443px) {
+  .footerContainer {
+    height: 55px;
+    padding-bottom: 3em;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .footerContainer {
+    height: 40px;
+  }
+  .rightHeading {
+    display: none;
+    position: abosulte;
+    top: 0;
+  }
+}
+@media only screen and (min-width: 2000px) {
+  .footerHeading {
+    font-size: 200%;
+  }
+}
+Header {
+  text-align: center;
+}
+.heart {
+  color: red;
+}
+
+.pakistan {
+  color: white;
+}

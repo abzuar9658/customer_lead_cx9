@@ -1,9 +1,12 @@
 * {
-    margin-left: 0;
-    padding: 0;
+  margin-left: 0;
+  padding: 0;
 }
 
 html,
 body {
-    height: 100vh;
+  overflow-y: hidden;
+  min-height: 100%;
+  width: 100%;
+  background-color: rgb(235, 235, 235);
 }

@@ -1,0 +1,23 @@
+.header {
+  position: fixed;
+  top: 0;
+  overflow-y: hidden;
+  width: 100%;
+  z-index: 100;
+}
+/* @media only screen and (min-width: 425) {
+  .header {
+    height: 100px;
+  }
+} */
+.footer {
+  position: fixed;
+  overflow-y: hidden;
+  bottom: 0;
+  width: 100%;
+}
+.layout {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}

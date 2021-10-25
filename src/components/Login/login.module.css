@@ -1,0 +1,35 @@
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 15em;
+  background-color: white;
+  box-shadow: 1px 2px 23px green;
+  padding: 2em;
+  width: 30em;
+  margin: 0 auto;
+  margin-bottom: 22em;
+  border-radius: 10px;
+  z-index: 1;
+}
+@media only screen and (min-width: 2560px) {
+  .loginContainer {
+    margin-top: 20em;
+    width: 60em;
+  }
+}
+@media only screen and (max-width: 440px) {
+  .loginContainer {
+    width: 20em;
+  }
+  .loginHeading {
+    font-size: 120%;
+  }
+}
+.linkTag {
+  text-decoration: underline;
+}
+
+.linkTag:hover {
+  cursor: pointer;
+}

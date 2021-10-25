@@ -1,0 +1,20 @@
+.leadsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 425px) {
+  .leadsContainer {
+    height: 77vh;
+    position: relative;
+    bottom: 50px;
+  }
+}
+
+@media only screen and (min-width: 1274px) {
+  .leadsContainer {
+    position: relative;
+    top: 30px;
+  }
+}
